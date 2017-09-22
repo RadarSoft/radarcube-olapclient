@@ -1,2 +1,2 @@
 # radarcube-olapclient
-Front-end for RadarCube OLAP controls 
+Front-end for RadarCube OLAP controls. 
