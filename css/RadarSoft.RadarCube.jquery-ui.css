@@ -1,0 +1,421 @@
+/*!
+ * RadarCube customization of jQuery UI
+ */
+
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-size: 1em !important;
+}
+
+/*.rs_toolbox .ui-button .ui-button-text {
+    line-height: 0px !important;
+}*/
+
+.rs_toolbox_button {
+    margin-right: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.rs_toolbox_separator {
+    display: inline;
+    border-left-color: red;
+    border-width: 0 1px 0 1px;
+    border-right-color: green;
+    margin: 1px;
+    height: 10px;
+    border-style: solid;
+}
+
+.rs_toolbox_avatar .ui-icon {
+    background-position: left top;
+}
+
+.rs_menu .ui-state-hover,
+.rs_menu .ui-widget-content .ui-state-hover,
+.rs_menu .ui-widget-header .ui-state-hover,
+.rs_menu .ui-state-focus,
+.rs_menu .ui-widget-content .ui-state-focus,
+.rs_menu .ui-widget-header .ui-state-focus,
+.rs_menu .ui-state-active,
+.rs_menu .ui-widget-content .ui-state-active,
+.rs_menu .ui-widget-header .ui-state-active {
+    font-weight: normal;
+}
+
+.ui-dialog, .ui-dialog .ui-dialog-content {
+    overflow: visible;
+}
+
+.ui-menu-item {
+    vert-align: middle;
+    white-space: nowrap;
+}
+
+    .ui-menu-item a {
+        text-decoration: none;
+    }
+
+.ui-menu .ui-menu-divider {
+    margin: 0 !important;
+}
+
+.rs_menu_icon {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 2px;
+    margin-right: 8px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-width: 0;
+}
+
+.rc_shadow {
+    box-shadow: 4px 4px 4px 0 #5a6364;
+    -moz-box-shadow: 4px 4px 4px 0 #5a6364;
+    -webkit-box-shadow: 4px 4px 4px 0 #5a6364;
+}
+
+.rs_unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+[drag=true] {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    cursor: move;
+}
+
+#OLAPGrid_draghelper {
+    box-shadow: 4px 4px 4px 0 #5a6364;
+    -moz-box-shadow: 4px 4px 4px 0 #5a6364;
+    -webkit-box-shadow: 4px 4px 4px 0 #5a6364;
+}
+
+.rc_container {
+    border-width: 0 0 0 1px !important;
+}
+
+#heditor_TREE {
+    border-width: 1px;
+}
+
+#olapgrid_IG {
+    border-width: 1px 0 0 1px;
+}
+
+.rc_tbl {
+    border-collapse: collapse;
+}
+
+    .rc_tbl th {
+        padding: 3px 4px;
+    }
+
+.rc_tbloddrow {
+    padding: 3px 4px;
+    color: inherit !important;
+    font-weight: inherit !important;
+}
+
+.rc_tblevenrow {
+    padding: 3px 4px;
+}
+
+.rc_filtergrid .ui-widget-header {
+    border-width: 1px 1px 1px 0 !important;
+}
+
+.rc_levelcell /* main table header */ {
+    border-width: 0 1px 1px 0 !important;
+    padding-right: 2px;
+}
+
+.rc_membercell /* table header */ {
+    border-width: 0 1px 1px 0 !important;
+    padding-right: 2px;
+}
+
+.rc_membercell_total {
+    border-width: 0 1px 1px 0 !important;
+    font-weight: bold;
+}
+
+.rc_datacell /* table data sell */ {
+    border-width: 0 1px 1px 0 !important;
+    padding: 1px 4px 0;
+    text-align: right;
+    vertical-align: middle;
+    background-image: none;
+}
+
+.rc_datacell_total /* TOTAL FONT COLOR */ {
+    border-width: 0 1px 1px 0 !important;
+    padding-left: 7px;
+    padding-right: 5px;
+    font-weight: bold;
+}
+
+.rc_pivotheader, .rc_filtergrid td.rc_datacell {
+    padding: 5px 3px 5px 5px;
+}
+
+.rc_pivotheader_leftdivider /*header left color*/ {
+    border-width: 1px 0 1px 1px !important;
+}
+
+.rc_pivotheader_rightdivider /*header right light color */ {
+}
+
+.rc_pivotarea_leftdivider /*header left dark stripe dark color */ {
+    border-width: 0 0 0 1px !important;
+}
+
+.rc_pivotarea_rightdivider /*header right light stripe dark color*/ {
+    border-width: 0 0 0 1px !important;
+}
+
+/* end */
+
+.rc_pivotheader span {
+    white-space: nowrap;
+}
+
+.rs_icon_cover {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    margin-left: 2px;
+    width: 13px;
+    height: 13px;
+    position: relative;
+}
+
+.rs_icon_cover span {
+        display: block;
+        position: absolute;
+        left: -2px;
+        top: -2px;
+        margin-top: 0px;
+    }
+
+.rs_icon_cover_filter {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+
+    .rs_icon_cover_filter span {
+        left: -1px;
+    }
+
+#olapgrid_IG .ui-selecting {
+    background: #FECA40;
+}
+
+#olapgrid_IG .ui-selected {
+    background: #F39814;
+    color: white;
+}
+
+.rs_cf_below_than, .rs_cf_preview_below_than {
+    background: #ed1cb9 !important;
+}
+
+.rs_cf_not_below_than, .rs_cf_preview_not_below_than {
+    background: #ff99e6 !important;
+}
+
+.rs_cf_more_than, .rs_cf_preview_more_than {
+    background: #FF0000 !important;
+}
+
+.rs_cf_not_more_than, .rs_cf_preview_not_more_than {
+    background: #fc8f8c !important;
+}
+
+.rs_cf_below_average, .rs_cf_preview_below_average {
+    background: #ebed1c !important;
+}
+
+.rs_cf_not_below_average, .rs_cf_preview_not_below_average {
+    background: #feffad !important;
+}
+
+.rs_cf_more_average, .rs_cf_preview_more_average {
+    background: #7aed1c !important;
+}
+
+.rs_cf_not_more_average, .rs_cf_preview_not_more_average {
+    background: #c0ff8d !important;
+}
+
+.rs_cf_near_average, .rs_cf_preview_near_average {
+    background: #02f5e1 !important;
+}
+
+.rs_cf_not_near_average, .rs_cf_preview_not_near_average {
+    background: #d3fffb !important;
+}
+
+.rs_cf_far_average, .rs_cf_preview_far_average {
+    background: #1636fc !important;
+}
+
+.rs_cf_not_far_average, .rs_cf_preview_not_far_average {
+    background: #acb8ff !important;
+}
+
+.rs_cf_menu span.ui-icon-check {
+    visibility: collapse;
+}
+
+.rs_cf_menu span.rs_selected_item {
+    visibility: visible;
+}
+
+#olapgrid_IG .rs_fc_light {
+    opacity: 0.5;
+}
+
+.rc_olapgrid_table {
+    border-width: 0 1px 1px 0 !important;
+    -webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+}
+
+.rc_gridarea{
+    position: relative;
+}
+
+/*sizing styles*/
+.rc_leftarea_container,
+.rc_rightarea_container,
+#olapgrid_tdtree {
+    overflow: visible;
+}
+
+.rc_content_resizer {
+    opacity: 0.7;
+}
+
+.rc_resize_vsplitter {
+    width: 7px;
+    height: 100%;
+}
+
+.rc_content_vresizer_icon {
+    position: relative;
+    top: 50%;
+    left: -4px;
+}
+
+.rc_leftarea_inner_resizer {
+    opacity: 0.7;
+}
+
+.rc_resize_hsplitter {
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    bottom: 0;
+    left: -1px;
+}
+
+.rc_content_hresizer_icon {
+    position: relative;
+    top: -4px;
+    margin: 0 auto;
+}
+
+.rc_rightarea_inner_resizer {
+    opacity: 0.7;
+}
+
+.rc_rightarea_resize_hsplitter {
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    left: -1px;
+}
+
+.rc_filtergrid_resize_hsplitter {
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    top: -6px;
+}
+
+.rc_filtergrid_resizer {
+    opacity: 0.7;
+    overflow: visible !important;
+}
+
+.pg-button {
+    float: left;
+    margin: 0 2px 2px 0;
+    cursor: pointer;
+}
+
+.treegrid-indent, .treegrid-expander {
+    float: left;
+}
+
+.pgTable {
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+}
+
+.rs-pg-editor {
+    float: left;
+}
+
+#olapgrid_legends {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#rs-toolboxbuttons {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.rs_toolbox .ui-button {
+    padding: 5px 10px !important;
+}
+
+.rc_olapgrid * {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.rc_olapgrid table {
+    border-collapse: separate;
+}
+
+.rc_olapgrid label {
+    margin-bottom: 0 !important;
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+}

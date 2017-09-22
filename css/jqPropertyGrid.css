@@ -1,0 +1,19 @@
+/**
+ * jqPropertyGrid
+ * https://github.com/ValYouW/jqPropertyGrid
+ * Author: YuvalW (ValYouW)
+ * License: MIT
+ */
+.pgGroupCell {
+    padding: 5px;
+}
+
+.pgCell {
+    /*border: solid 1px;*/
+    padding: 5px;
+    white-space: nowrap !important;
+}
+
+.pgTooltip {
+    margin-left: 5px;
+}
