@@ -1,8 +1,8 @@
 {
   "name": "radarcube-olapclient",
-  "version": "1.0.0"
+  "version": "1.0.0",
   "main": [
-  "dist/radarcube-olapclient.all.min.css",
-  "dist/radarcube-olapclient.all.min.js"
+  "./dist/radarcube-olapclient.all.min.css",
+  "./dist/radarcube-olapclient.all.min.js"
   ]
 }
