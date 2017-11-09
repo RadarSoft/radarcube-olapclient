@@ -34,6 +34,7 @@
         callback(arg?:string, context?:string, callback?: () => void) {
             if (this.jqRS_OG().attr('disabled')) return;
 
+            arg = encodeURIComponent(arg);
             this.mvcCallback(this, arg, context, callback, "POST");
         }
 

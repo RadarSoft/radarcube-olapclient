@@ -344,6 +344,13 @@
             if (dialog.buttons != null)
                 dlg.dialog("option", "buttons", $.map(dialog.buttons, function (item) { return { text: item.text, click: function () { eval(item.code); } }; }));
 
+            if (dialog.resizable)
+                dlg.dialog('option', 'resizable', dialog.resizable);
+
+            dlg.dialog('option', 'minHeight', dialog.height);
+
+            dlg.dialog('option', 'width', dialog.width > 0 ? dialog.width : 'auto');
+
             dlg.dialog('open');
             $('#rs_uibtn').button();
 
@@ -1153,8 +1160,7 @@
 
             $('.rs_menu').menu();
             $('.rs_menu #rs_stat').parent('li').css('list-style-image', 'none');
-            $(document).bind('click', { grid: this }, function (event) { event.data.grid.hidePopup(event); });
-
+            //$(document).unbind("click").bind('click', { grid: this }, function (event) { event.data.grid.hidePopup(event); });
         }
 
         fillSelectionPopupContent() {
@@ -2435,10 +2441,8 @@
                         });
                     } else {
                         $(this).dialog({
-                            resizable: false,
                             height: 'auto',
-                            width: "auto",
-                            minWidth: 0
+                            minWidth: 100
                         });
                     }
                 },
