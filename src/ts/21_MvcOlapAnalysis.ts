@@ -3,8 +3,6 @@
 
         constructor() {
             super();
-            //    this.docHeight = $(document).height();
-            //    this.docWidth = $(document).width();
         }
 
         protected createHierarchyEditor(hierarchy: string): HierarchyEditor {

@@ -881,8 +881,6 @@
             var toolbox = this.jqRS_OG('.rs_toolbox');
             var filtergrid = this.jqRS_F();
 
-            var g = this.jqRS_OG();
-            var gContainer = this.jqRS_OG('.rc_olapgrid_container');
             var ig = this.jqRS_IG();
 
             var tree = this.jqRS_OG('#olapgrid_tdtree');
@@ -906,10 +904,11 @@
             if (rightArea.length)
                 igWidth -= rightAreaContainer.outerWidth();
 
-            ig.outerWidth(igWidth);
+            ig.outerWidth(igWidth - 1);
 
-
-            var gcHeight = g.height();
+            var tempE = $('<div></div>');
+            tempE.height(this._settings.height);
+            var gcHeight = tempE.height();
             if (toolbox.length) {
                 var tbButtonH = toolbox.outerHeight(true);
                 gcHeight -= tbButtonH;
@@ -917,11 +916,11 @@
             if (filtergrid.length && !filtergrid.is(':hidden'))
                 gcHeight -= filtergrid.outerHeight();
 
-            gContainer.height(gcHeight);
+            tempE.height(gcHeight);
 
-            leftAreaContainer.height(gContainer.height());
-            rightAreaContainer.height(gContainer.height());
-            ig.height(gContainer.height());
+            leftAreaContainer.height(tempE.height());
+            rightAreaContainer.height(tempE.height());
+            ig.height(tempE.height());
 
             var thHeader = this.jqRS_OG('#olapgrid_tdtree_header').outerHeight();
 
@@ -942,7 +941,6 @@
             else
                 tree.height(leftArea.outerHeight() - thHeader);
 
-
             if (legends.length) {
                 let legH: number;
                 if (modifiers.length > 0)
@@ -959,7 +957,10 @@
                 legendsContainer.height(legH);
 
                 legendsContainer.width(rightAreaContainer.width());
+
             }
+
+            this.jqRS_OG().height("auto");
         }
 
         doDrop(event: JQueryEventObject) {
@@ -1373,7 +1374,7 @@
             if (!tv.hasClass('treeview')) {
                 tv = tv.treeview({ grid: this }).bind('selectstart', false).addClass('rs_unselectable');
                 var chk = tv.find('li[checked]');
-                $(document.createElement('input')).attr({ 'type': 'checkbox' }).insertBefore(chk.children('span'));
+                $(document.createElement('input')).attr({ 'type': 'checkbox' }).css("margin", "0 2px").insertBefore(chk.children('span'));
                 tv.find('li[checked=True] input').prop('checked', true);
                 chk.find('input').css('cursor', 'pointer').unbind("click").click({ grid: this }, function (event) {
                     var uid = $(event.target).findAttr('uid');
@@ -2191,6 +2192,37 @@
                     menu += "<li></li>";
                 }
 
+                if ($(this).hasClass('rs_layout_toolbox_button')) {
+                    menu += "<li>";
+                    menu += '<div>';
+                    menu += $(this).attr("title");
+                    menu += '</div>';
+                    menu += "<ul class='rc_shadow'>";
+
+                    $(this).parent().find('.rs_layout_toolbox_menu').find('li').each(function () {
+                        if (!$(this).attr('onclick'))
+                        {
+                            if (!$(this).find("span.rc-menu-item").html())
+                                menu += "<li></li>";
+                            else {
+                                menu += "<li class='ui-state-disabled'><div>";
+                                menu += "<span>" + $(this).find("span.rc-menu-item").html() + "</span>";
+                                menu += "</div></li>";
+                            }
+                        }
+                        else {
+                            menu += "<li><div>";
+                            menu += "<a href=\"{" + $(this).attr('onclick') + "}\">";
+                            menu += "<span>" + $(this).find("span.rc-menu-item").html() + "</span>";
+                            menu += "</a></div></li>";
+                        }
+                    });
+
+                    menu += "</ul></li>";
+                    return;
+                }
+
+
                 if ($(this).hasClass('rs_measureplace_toolbox_button')) {
                     menu += "<li>";
                     menu += '<div>';
@@ -2249,7 +2281,8 @@
                         if ($(this).hasClass('ui-state-active'))
                             liClass = "ui-state-disabled";
                         menu += "<li class='" + liClass + "'><div>";
-                        menu += '<img class="ui-icon rs_menu_icon" src="' + $(this).find('img').attr('src') + '">';
+                        if ($(this).find('img').length !== 0)
+                            menu += '<img class="ui-icon rs_menu_icon" src="' + $(this).find('img').attr('src') + '">';
                         menu += "<a href=\"{" + $(this).attr('onclick') + "}\">";
                         menu += "<span>";
                         menu += $(this).attr('title');
@@ -2290,7 +2323,7 @@
             var tbWidth = toolbox.innerWidth();
             var lastVisible = null;
 
-            toolbox.children(":not('.rs_export_menu, .rs_measureplace_menu')").show().each(function () {
+            toolbox.children(":not('.rs_export_menu, .rs_measureplace_menu, .rs_layout_menu')").show().each(function () {
                 var rightLim = $(this).position().left + $(this).width();
                 if (rightLim > tbWidth) {
                     menuButtons.push(this);
@@ -2354,7 +2387,15 @@
                     menu.hide();
                 });
                 event.data.grid.jqRS_OG(".rs_export_menu").hide();
+                event.data.grid.jqRS_OG(".rs_layout_menu").hide();
                 return false;
+            });
+
+            this.jqRS_OG('.rc_cell_resizing').checkboxradio({
+                icon: false
+            });
+            this.jqRS_OG('.rc_delay_pivoting').checkboxradio({
+                icon: false
             });
 
             this.jqRS_OG('.rs_export_toolbox_menu').menu();
@@ -2378,23 +2419,40 @@
                     menu.hide();
                 });
                 event.data.grid.jqRS_OG(".rs_measureplace_menu").hide();
+               return false;
+            });
+
+            this.jqRS_OG('.rs_layout_toolbox_menu').menu();
+
+            this.jqRS_OG('.rs_layout_toolbox_button').button({
+                icons: {
+                    secondary: "ui-icon-triangle-1-s"
+                }
+            }).unbind("click").click({ grid: this }, function (event) {
+                var menu = event.data.grid.jqRS_OG(".rs_layout_menu");
+                if (menu.css('display') === 'none') {
+                    menu.show().position({
+                        my: "left top",
+                        at: "left bottom",
+                        of: this
+                    });
+                } else {
+                    menu.hide();
+                }
+                $(document).one("click", function () {
+                    menu.hide();
+                });
+                event.data.grid.jqRS_OG(".rs_measureplace_menu").hide();
+                event.data.grid.jqRS_OG(".rs_export_toolbox_menu").hide();
                 return false;
             });
+
 
             this.createSettingsMenu();
 
             this.moveButtonsToMenu();
 
-            ////$(window).load({ grid: this }, function (event) {
-            ////    event.data.grid.moveButtonsToMenu();
-            ////    //event.data.grid.resizeIG();
-            ////});
-
-            //        var toolbox = this.jqRS_OG('.rs_toolbox').children('div');
-            //        var buttons = toolbox.children(".ui-button, .ui-buttonset");
-            //        this.jqRS_OG(buttons.get(buttons.length)).on("buttonsetcreate", { grid: this }, function (event) {
-            //            event.data.grid.moveButtonsToMenu();
-            //        });
+            //this.jqRS_OG(".rs_layout_menu").hide();
         }
 
         createSettingsMenu() {
@@ -2424,7 +2482,7 @@
                 this._settings = settings;
 
             this.jqRS_OG().width(this._settings.width);
-            this.jqRS_OG().height(this._settings.height);
+            //this.jqRS_OG().height(this._settings.height);
             this.jqRS_OG().data('grid', this);
             this.jqRS_D().data('grid', this).dialog(
             {
@@ -2480,6 +2538,8 @@
             this.initAllAreasResizing();
 
             this.initToolbox();
+
+            this.jqRS_OG(".loading_overlay").remove();
         }
 
         initialize(settings = "") {

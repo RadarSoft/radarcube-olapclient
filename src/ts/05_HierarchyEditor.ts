@@ -62,7 +62,7 @@
             this.grid.jqRS_D("td[member] span.pager").css("cursor", "pointer").unbind("click").click(
                 { heditor: this.grid.heditor }, event => {
                 var o = $(event.target);
-                event.data.heditor.page(o.findAttr("member"), o.text());
+                event.data.heditor.page(o.findAttr("member"), o.findAttr("page-value"));
                 event.stopPropagation();
             });
         }
