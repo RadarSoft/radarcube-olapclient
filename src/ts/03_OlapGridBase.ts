@@ -2540,6 +2540,7 @@
             this.initToolbox();
 
             this.jqRS_OG(".loading_overlay").remove();
+            this.jqRS_OG().css("overflow", "visible");
         }
 
         initialize(settings = "") {
