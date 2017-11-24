@@ -40,9 +40,11 @@
             if (settings != "")
                 this.set_settings(settings);
 
-            if (this.getAnalysisType() === "grid" && this._settings.allowSelectionFormatting) {
+            if (this.getAnalysisType() === "grid" && this._settings.allowSelectionFormatting)
                 this._conditionFormat = new ConditionFormating(this);
-            }
+            else
+                this._conditionFormat = null;
+
             super.initialize();
             this.initLoadLayoutDialog();
             this.initLoadSettingsDialog();
