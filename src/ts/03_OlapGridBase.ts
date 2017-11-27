@@ -453,7 +453,7 @@
             
 
             if (response.olapgridcontainer)
-                this.jqRS_OG('.rc_olapgrid_table tr:first').html(response.olapgridcontainer);
+                this.jqRS_OG('.rc_olapgrid_table').html(response.olapgridcontainer);
 
             if (response.settings) {
                 this.initialize(response.settings);
@@ -897,6 +897,7 @@
             var rightAreaContainer = this.jqRS_OG('.rc_rightarea_container');
             var leftArea = this.jqRS_OG('.rc_leftarea');
             var rightArea = this.jqRS_OG('.rc_rightarea');
+            var gridArea = this.jqRS_OG('.rc_gridarea');
 
             var igWidth = this.jqRS_OG().width();
             if (leftArea.length)
@@ -916,45 +917,49 @@
             if (filtergrid.length && !filtergrid.is(':hidden'))
                 gcHeight -= filtergrid.outerHeight();
 
-            tempE.height(gcHeight);
+            //tempE.height(gcHeight);
 
-            leftAreaContainer.height(tempE.height());
-            rightAreaContainer.height(tempE.height());
-            ig.height(tempE.height());
+            //leftAreaContainer.height(tempE.height());
+            //rightAreaContainer.height(tempE.height());
+            ig.height(gcHeight);
+            gridArea.height("");
 
             var thHeader = this.jqRS_OG('#olapgrid_tdtree_header').outerHeight();
-
+            var pivotInnerHeight = this.jqRS_OG('#olapgrid_PIVOT_inner').outerHeight();
             if (tree.length && pivot.length) {
-                if (pivot.height() !== 0) {
-                    var psh = pivot[0].scrollHeight;
-                    var delta = leftArea.outerHeight() - psh - thHeader;
+                //if (pivot.height() !== 0) 
+                {
+                    //var psh = pivot[0].scrollHeight;
+                    var delta = gcHeight - pivotInnerHeight - thHeader;
                     if (delta <= _minTreeHeight) {
-                        pivot.height(leftArea.outerHeight() - _minTreeHeight - thHeader);
+                        pivot.height(gcHeight - _minTreeHeight - thHeader);
                     } else {
-                        pivot.height('');
+                        pivot.height(pivotInnerHeight);
                     }
                 }
-                tree.height(leftArea.outerHeight() - pivot.height() - thHeader);
+                tree.height(gcHeight - pivot.outerHeight() - thHeader + 1);
             }
             else if (pivot.length)
-                pivot.height(leftArea.outerHeight());
+                pivot.height(gcHeight);
             else
-                tree.height(leftArea.outerHeight() - thHeader);
+                tree.height(gcHeight - thHeader);
 
+            legends.height("");
+           
             if (legends.length) {
                 let legH: number;
                 if (modifiers.length > 0)
                 {
-                    legH = leftArea.outerHeight() - modifiers.outerHeight() - legendsHeader.outerHeight();
+                    legH = gcHeight - modifiers.outerHeight() - legendsHeader.outerHeight();
                     if (legH < _minLegendHeight) {
                         legH = _minLegendHeight;
-                        modifiers.height(leftArea.outerHeight() - legH - legendsHeader.outerHeight());
+                        modifiers.height(gcHeight - legH - legendsHeader.outerHeight());
                    }
                 }
                 else
-                    legH = leftArea.outerHeight() - legendsHeader.outerHeight();
+                    legH = gcHeight - legendsHeader.outerHeight();
 
-                legendsContainer.height(legH);
+                legendsContainer.height(legH + 1);
 
                 legendsContainer.width(rightAreaContainer.width());
 
